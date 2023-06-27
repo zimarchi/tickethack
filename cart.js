@@ -5,7 +5,7 @@ function deleteCartTrip(trips) {
             const cartTrip = trips[i]
             fetch("http://localhost:3000/cart", {
             method: "DELETE",
-            headers: {"Content-Type": "package.json"},
+            headers: {"Content-Type": "package/json"},
             body: JSON.stringify({departure: cartTrip.departure, arrival: cartTrip.arrival, date: cartTrip.date, price: cartTrip.price}),
       })
         .then(res => res.json())
@@ -31,7 +31,7 @@ function addToBookings(trips) {
         fetch("http://localhost:3000/booking", {
           method: "POST",
           headers: {
-            "Content-Type": "package.json",
+            "Content-Type": "package/json",
           },
           body: JSON.stringify({departure: purchasedTrip.departure, arrival: purchasedTrip.arrival, date: purchasedTrip.date, price: purchasedTrip.price}),
         })
@@ -41,7 +41,7 @@ function addToBookings(trips) {
             fetch("http://localhost:3000/cart/all", {
                 method: "DELETE",
                 headers: {
-                    "Content-Type": "package.json",
+                    "Content-Type": "package/json",
                   },
             })
               window.location = './bookings.html'
