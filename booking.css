@@ -1,0 +1,94 @@
+body {
+    background-color: white;
+    margin: 0;
+  }
+  
+  #container {
+    background-color: rgb(160, 160, 160);
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+  }
+  
+  #header {
+    grid-row: 1;
+    grid-column: 1 / span 12;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+  }
+  
+  #cartButton,
+  #bookingButton {
+    padding-right: 1.5rem;
+    text-decoration: none;
+    color: black;
+  }
+  
+  #ticketHackButton {
+    font-size: 28px;
+    padding-right: 1.5rem;
+    text-decoration: none;
+    color: #58A895;
+    border: 0.5px solid black;
+    grid-row: 1;
+    grid-column: 1 / span 4;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+    padding-left: 2%;
+  }
+  
+  #logo-container {
+    border: 0.5px solid black;
+    grid-row: 1;
+    grid-column: 1 / span 4;
+    display: flex;
+    flex-direction: row;
+    color: #58A895;
+    font-weight: bolder;
+    font-size: 28px;
+    padding-left: 2%;
+  }
+  
+  #container-left {
+    grid-row: 5 / span 8;
+    grid-column: 4 / span 6;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: space-around;
+    margin: 10px;
+  }
+  
+  .travel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: antiquewhite;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    align-items: center;
+  }
+  
+  .text {
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 15px;
+  }
+  
+  #container-trips {
+    overflow: auto;
+  }
+  
+  h4 {
+    color: #58A895;
+  }

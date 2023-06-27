@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TicketHackBooking</title>
-    <link rel="stylesheetcart" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="booking.css">
+  <title>Cart</title>
 </head>
 <body>
-    <div class="container">
-        <div class="navigator">
-            <a class="logo" href="home.html">Tickethack</a>
-            <a href="booking.html">Bookings</a>
-            <a href="cart.html">Cart</a>        
-        </div>
-     <div id="container-left">
-        <h2>My Bookings</h2>
-        <div id="tripsIteams">
-        </div>
-        <h4>Enjoy your travel with Tickethack!</h4>
+  <div id="container">
+    <div id="header">
+      <div id="logo-container">
+        <a id="ticketHackButton" href="index.html" class="header_btn">TicketHack</a>
+        <a id="cartButton" href="cart.html" class="header_btn">CART</a>
+        <a id="bookingButton" href="booking.html" class="header_btn">BOOKING</a>
       </div>
-
     </div>
-    <script src="booking.js"></script>
-
+    <div id="container-left">
+      <h2>My Bookings</h2>
+      <div id="container-trips"></div>
+      <h4>Enjoy your travel with TicketHack!</h4>
+    </div>
+  </div>
+  <script src="booking.js"></script>
 </body>
 </html>

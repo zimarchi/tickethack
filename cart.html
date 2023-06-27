@@ -1,34 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TicketHackCart</title>
-    <link rel="stylesheetcart" href="style.css" />
-</head>
-<body>
-    <div class="container">
-        <div class="navigator">
-            <a class="logo" href="home.html">Tickethack</a>
-            <a href="booking.html">Bookings</a>
-            <a href="cart.html">Cart</a>        
-        </div>
-        <div class="content-cart">
-            <div class="row-cart">
-                 <p class="text-no-ticket">No tickets in your Cart. </p> 
-                    <span>Why not plan a trip?</span> 
-                <p class="text-cart">My cart</p>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="cart.css" />
+    <title>Cart</title>
+  </head>
+
+  <body>
+    <div id="container">
+        <div id="header">
+            <div id="logo-container">
+              <a id="ticketHackButton" href="index.html" class="header_btn">TicketHack</a>
+              <a id="cartButton" href="cart.html" class="header_btn">CART</a>
+              <a id="bookingButton" href="booking.html" class="header_btn">BOOKING</a>
             </div>
-            <div class="row-cart-total">
-                <div id="booking-total">
-                    <p id="total-price"></p>
-                    <div class="trip_price_currency">€</div>
-                    <input type="button" id="btn-purchase" value="Purchase">
-                </div>
-            </div>
+          </div>
+      <main>
+        <div id="center_box">
+          <div id="center_title">
+            <h2>Cart</h2>
+          </div>
+          <div id="container_box">
+            <div class="item_box"></div>
+          </div>
+          <div id="total_box">
+            <h2 id="total">Total:</h2>
+            <button id="purchase">Purchase</button>
+          </div>
         </div>
-    <script src="./cart.js"></script>
-    
-</body>
+      </main>
+      <footer>
+        <span>TicketHack</span>
+      </footer>
+    </div>
+    <script src="cart.js"></script>
+  </body>
 </html>

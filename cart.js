@@ -1,97 +1,119 @@
-function deleteCartTrip(trips) {
-    const deleteButton = document.querySelectorAll(".delete")
-    for (let i = 0; i < deleteButton.length; i++) {
-        deleteButton[i].addEventListener("click", () => {
-            const cartTrip = trips[i]
-            fetch("http://localhost:3000/cart", {
-            method: "DELETE",
-            headers: {"Content-Type": "package/json"},
-            body: JSON.stringify({departure: cartTrip.departure, arrival: cartTrip.arrival, date: cartTrip.date, price: cartTrip.price}),
-      })
-        .then(res => res.json())
-        .then(data => {
-            if (data.result) {
-                deleteButton[i].parentNode.remove()
-                window.location.reload()
-                console.log(data.message)
-            } else {
-                console.log(data.error)
-            }
-        })
-        })
+const API = "http://localhost:3000";
+const box = document.querySelector("#container_box");
+
+document.querySelector("#purchase").addEventListener("click", purchase);
+
+async function readAllCartFromDB() {
+  try {
+    const response = await fetch(`${API}/cart/allNonBooked`);
+    const { result, carts } = await response.json();
+
+    if (!result) {
+      throw new Error("Unable to read carts");
     }
 
+    carts = carts || [];
+    console.log(`${carts.length} carts found`);
+    return carts;
+  } catch (error) {
+    console.error("Error reading carts:", error);
+    return [];
+  }
 }
 
-function addToBookings(trips) {
-    const bookingChoice = document.querySelectorAll(".booking-choices");
-    for (let i = 0; i < bookingChoice.length; i++) {
-      document.querySelector("#btn-purchase").addEventListener("click", () => {
-      const purchasedTrip = trips.data[i]
-        fetch("http://localhost:3000/booking", {
-          method: "POST",
-          headers: {
-            "Content-Type": "package/json",
-          },
-          body: JSON.stringify({departure: purchasedTrip.departure, arrival: purchasedTrip.arrival, date: purchasedTrip.date, price: purchasedTrip.price}),
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.result) {
-            fetch("http://localhost:3000/cart/all", {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "package/json",
-                  },
-            })
-              window.location = './bookings.html'
-              return true
-  
-          } else {
-              console.log("Already in cart")
-              return false
-          }
-        })
-      });
-    }
+function createCartElement(cart) {
+  const { _id, departure, arrival, time, price } = cart;
+  const itemBox = document.createElement("div");
+  itemBox.id = `ID${_id}`;
+  itemBox.classList.add("item_box");
+
+  itemBox.innerHTML = `
+    <div class="trip_name">${departure} > ${arrival}</div>
+    <div class="trip_time">${time}</div>
+    <div class="trip_price">${price}</div>
+    <button class="remove-trip-btn">X</button>
+  `;
+
+  itemBox.querySelector(".remove-trip-btn").addEventListener("click", removeItem);
+
+  return itemBox;
+}
+
+async function updateGuiFromCartsArray() {
+  try {
+    const carts = await readAllCartFromDB();
+    console.log("UPDATE GUI FROM DB", carts);
+
+    box.innerHTML = "";
+    carts.forEach((cart) => {
+      const itemBox = createCartElement(cart);
+      box.appendChild(itemBox);
+    });
+
+    updateTotalPrice();
+  } catch (error) {
+    console.error("Error updating GUI:", error);
   }
+}
 
+function updateTotalPrice() {
+  const tripPrices = Array.from(document.querySelectorAll(".trip_price"));
+  const total = tripPrices.reduce((sum, element) => sum + Number(element.textContent), 0);
 
-  
-  window.addEventListener('load', (event) => {
-    const noTicket = document.querySelector(".text-no-ticket")
-    const textCart = document.querySelector(".text-cart")
-    const rowCartTotal = document.querySelector(".row-cart-total")
-    rowCartTotal.style.display = "none"
-    textCart.style.display = "none"
-  noTicket.style.display = "block"
-    fetch("http://localhost:3000/cart")
-        .then(res => res.json())
-        .then(data => {
-            if (data.data.length > 0) {
-              noTicket.style.display = "none"
-              textCart.style.display = "block"
-              rowCartTotal.style.display = "block"
-                const rowCarts = document.querySelector(".row-cart")
-                let totalCart = 0
-                for (let trip of data.data) {
-                    const date = new Date(trip.date)
-                    rowCarts.innerHTML += `
-                <div class="booking-choices">
-                    <p class="choice">${trip.departure} > ${trip.arrival}</p>
-                    <p class="choice">${(date.getHours() < 10 ? "0" : "") + date.getHours()}:${(date.getMinutes() < 10 ? "0" : "") + date.getMinutes()}</p>
-                    <p class="choice">${trip.price}€</p>
-                    <span class="delete">X</span>
-                </div>` 
-                totalCart += Number(trip.price)
-                }
-                document.querySelector("#total-price").textContent = `Total : ${totalCart}`
-                addToBookings(data)
-                deleteCartTrip(data.data)
-            } else {
-              noTicket.style.display = "block"
-              textCart.style.display = "none"
-              rowCartTotal.style.display = "none"
-            }
-        })
+  document.querySelector("#total").textContent = `Total: ${total} €`;
+}
+
+async function removeItem() {
+  try {
+    const id = this.parentNode.id.replace("ID", "");
+    console.log(`Remove item with id ${id}`);
+
+    const response = await fetch(`${API}/cart/delete/${id}`, {
+      method: "DELETE",
+    });
+
+    const { result } = await response.json();
+
+    if (!result) {
+      throw new Error("Unable to remove item");
+    }
+
+    this.parentNode.remove();
+    updateTotalPrice();
+  } catch (error) {
+    console.error("Error removing item:", error);
+  }
+}
+
+async function purchase() {
+  try {
+    const itemBoxes = Array.from(document.querySelectorAll(".item_box"));
+    const ids = itemBoxes.map((box) => box.id.replace("ID", ""));
+
+    const body = { ids };
+    console.log("POST body");
+    console.log(body);
+
+    const response = await fetch(`${API}/cart/book`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    const { result } = await response.json();
+
+    if (!result) {
+      throw new Error("Unable to complete purchase");
+    }
+
+    alert("Purchase completed successfully!");
+    updateFromCartsArray();
+  } catch (error) {
+    console.error("Error purchasing:", error);
+  }
+}
+
+// Initialize the visuals
+document.addEventListener("DOMContentLoaded", () => {
+  updateFromCartsArray();
 });
