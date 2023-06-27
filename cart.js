@@ -81,7 +81,7 @@ function addToBookings(trips) {
                     <p class="choice">${trip.departure} > ${trip.arrival}</p>
                     <p class="choice">${(date.getHours() < 10 ? "0" : "") + date.getHours()}:${(date.getMinutes() < 10 ? "0" : "") + date.getMinutes()}</p>
                     <p class="choice">${trip.price}€</p>
-                    <span class="delete">✖</span>
+                    <span class="delete">X</span>
                 </div>` 
                 totalCart += Number(trip.price)
                 }
