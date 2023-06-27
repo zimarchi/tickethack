@@ -1,0 +1,127 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("./images/background.jpg");
+    background-size: 100%;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    border: 0px;
+}
+
+#header {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 5px black solid;
+}
+
+#bodynoheader {
+    grid-row-start: 2;
+    grid-row-end: 11;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 5px black solid;
+}
+
+#upperbody {
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px black solid;
+}
+
+#lowerbody {
+    grid-row-start: 4;
+    grid-row-end: 11;
+    grid-column-start: 1;
+    grid-column-end: 11;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px black solid;
+}
+
+#resultscontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px black solid;
+    overflow: scroll;
+}
+
+#searchcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px black solid;
+}
+
+#DAinput {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    border: 5px black solid;
+}
+
+
+#twospans {
+    flex-direction: row;
+}
+
+#logo {
+    display: flex;
+    flex-direction: column;
+    border: 5px rgb(205, 23, 23) solid;
+}
+
+#bigtxt {
+    font-size: 40px;
+    font-family: "Verdana", "Tahoma", sans-serif;
+}
+
+#smalltxt {
+    font-size: 20px;
+    font-family: "Verdana", "Tahoma", sans-serif;
+}
+
+
+.blank {
+    background-color: rgb(238, 255, 0);
+}
+
+.grey {
+    background-color: rgb(137, 137, 137);
+    font-size: 15px;
+    font-family: "Verdana", "Tahoma", sans-serif
+}
+
+.button {
+    border: 5px solid rgb(36, 23, 215);
+}
+
+.pink {
+    background-color: rgb(196, 32, 185);
+}
+
+.triptextresult {
+    font-size: 15px;
+    font-family: "Verdana", "Tahoma", sans-serif
+}
+
