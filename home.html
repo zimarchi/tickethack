@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>ThicketHack</title>
+</head>
+
+<body>
+    <div id="header" class = "blank">
+        <div id = "logo">
+            <img src="images/glass.png" />
+        </div>
+        <div id = "twospans">
+            <span id = "cartpage">Cart</span>
+            <span id = "bookingpage">Booking</span>
+        </div>
+    </div>
+    <div id = "bodynoheader">
+        <div id = "upperbody">
+            <span id ="bigtxt">big text</span>
+            <span id = "smalltxt">small text</span>
+        </div>
+        <div id = "lowerbody">
+            <div id = "searchcontainer" class = "blank"> 
+                    <div id ="DAinput">
+                        <input class="grey" id = "departureinput" type="text" placeholder="Add departure" />
+                        <input class="grey" id = "arrivalinput" type="text" placeholder="Add arrival" />
+                    </div>
+                    <input class="grey" id = "departuredate" type="date" class = "grey"/>
+                    <button id="search" class = "button">
+                        <img src="images/glass.png" />
+                    </button>
+            </div>
+            <div id = "resultscontainer" class = "blank">
+                <div id = "tripresult" class = "pink">
+                    <span class = "triptextresult" id = "DAresult">paris-lyon</span>
+                    <span class = "triptextresult" id = "timeresult">13:54</span>
+                    <span class = "triptextresult" id ="priceresult">140€</span>
+                    <button id="book" class = "button">
+                        <img src="images/glass.png" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+
+</html>
