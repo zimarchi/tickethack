@@ -1,5 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TicketHack</title>
+</head>
+
+<body>
+  <div id="container">
+    <div id="header">
+      <div id="logo-container">
+        <h1 id="title">TicketHack</h1>
+        <a id="cartButton" href="cart.html" class="header_btn">CART</a>
+        <a id="bookingButton" href="booking.html" class="header_btn">BOOKING</a>
+      </div>
+    </div>
+
+    <div id="container-left">
+      <input id="departure" type="text" placeholder="Departure" />
+      <input id="arrival" type="text" placeholder="Arrival" />
+      <input id="date" type="date" />
+      <button id="search-btn">SEARCH</button>
+    </div>
+
+    <div id="container-right">
+      <div id="container-trips"></div>
+      <div id="default">
+        <div id="trainImg">
+          <img src="images/train.png" alt="trainImg">
+        </div>
+        <div class="text">It's time to book your future trip.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -53,6 +100,8 @@
         </div>
     </div>
     <script src="home.js"></script>
+
 </body>
 
 </html>
+-->
