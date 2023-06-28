@@ -1,119 +1,92 @@
-const API = "http://localhost:3000";
-const box = document.querySelector("#container_box");
+let API = "http://localhost:3000";
+let box = document.querySelector("#container_box");
 
-document.querySelector("#purchase").addEventListener("click", purchase);
+// Add click to purchase button
+document.querySelector("#purchase").onclick = purchase;
 
-async function readAllCartFromDB() {
-  try {
-    const response = await fetch(`${API}/cart/allNonBooked`);
-    const { result, carts } = await response.json();
-
-    if (!result) {
-      throw new Error("Unable to read carts");
-    }
-
-    carts = carts || [];
-    console.log(`${carts.length} carts found`);
-    return carts;
-  } catch (error) {
-    console.error("Error reading carts:", error);
-    return [];
-  }
-}
-
-function createCartElement(cart) {
-  const { _id, departure, arrival, time, price } = cart;
-  const itemBox = document.createElement("div");
-  itemBox.id = `ID${_id}`;
-  itemBox.classList.add("item_box");
-
-  itemBox.innerHTML = `
-    <div class="trip_name">${departure} > ${arrival}</div>
-    <div class="trip_time">${time}</div>
-    <div class="trip_price">${price}</div>
-    <button class="remove-trip-btn">X</button>
-  `;
-
-  itemBox.querySelector(".remove-trip-btn").addEventListener("click", removeItem);
-
-  return itemBox;
-}
-
-async function updateFromCartsArray() {
-  try {
-    const carts = await readAllCartFromDB();
-    console.log("UPDATE GUI FROM DB", carts);
-
-    box.innerHTML = "";
-    carts.forEach((cart) => {
-      const itemBox = createCartElement(cart);
-      box.appendChild(itemBox);
+// Function to fetch all carts from the mongoose thing
+function readAllCartFromDB() {
+  return fetch(API + '/cart/mongoosethingidkwhatitsnamed') // Fetch data from the mongoose
+    .then(function(response) { 
+      return response.json();
+    })
+    .then(function(data) {
+      let result = data.result;
+      let carts = data.carts;
+      // Check the result if its not equal to the result then it shows that its unable to read
+      if (!result) {
+        console.log("Unable to read carts");
+        return [];
+      }
+      // Log the number of trips/carts found (idk what its called on the mongoose thing so i just named it carts)
+      carts = carts || [];
+      console.log(carts.length + ' carts found');
+      return carts;
+    })
+    .catch(function(error) {
+      // shows any errors
+      console.error("Error reading carts:", error);
+      return [];
     });
-
-    updateTotalPrice();
-  } catch (error) {
-    console.error("Error updating GUI:", error);
-  }
 }
 
-function updateTotalPrice() {
-  const tripPrices = Array.from(document.querySelectorAll(".trip_price"));
-  const total = tripPrices.reduce((sum, element) => sum + Number(element.textContent), 0);
+// Function to remove a trips/cart from the server
+function removeItem(id) {
+  id = id.replace("ID", ""); // Remove 'ID' from the start of the id
+  console.log("Remove item with id " + id); // Log the id of the item that has to be removed
 
-  document.querySelector("#total").textContent = `Total: ${total} €`;
-}
-
-async function removeItem() {
-  try {
-    const id = this.parentNode.id.replace("ID", "");
-    console.log(`Remove item with id ${id}`);
-
-    const response = await fetch(`${API}/cart/delete/${id}`, {
-      method: "DELETE",
-    });
-
-    const { result } = await response.json();
-
+  fetch(API + "/cart/delete/" + id, {
+    method: "DELETE", // Use the DELETE method
+  })
+  .then(function(response) {
+    return response.json(); // Convert the response to a JavaScript object
+  })
+  .then(function(data) {
+    let result = data.result;
+    // Checks if it was reussi or not
     if (!result) {
-      throw new Error("Unable to remove item");
+      console.log("Unable to remove item");
+      return;
     }
-
-    this.parentNode.remove();
-    updateTotalPrice();
-  } catch (error) {
+    // Remove the trip from the cart
+    document.getElementById("ID" + id).remove();
+  })
+  .catch(function(error) {
+    // shows if there are errors
     console.error("Error removing item:", error);
-  }
+  });
 }
 
-async function purchase() {
-  try {
-    const itemBoxes = Array.from(document.querySelectorAll(".item_box"));
-    const ids = itemBoxes.map((box) => box.id.replace("ID", ""));
+// Function to purchase all trips in the cart
+function purchase() {
+  // Again i think this is one way os assigning all the trips to their IDs so they can purchase in one go and get rid of it after purchase but not too sure
+  let PotentialTrips = Array.from(document.querySelectorAll(".item_box"));
+  let ids = PotentialTrips.map(function(box) {
+    return box.id.replace("ID", "");
+  });
 
-    const body = { ids };
-    console.log("POST body");
-    console.log(body);
+  let body = { ids: ids }; // Create the request body
+  console.log("POST body");
+  console.log(body); // Log the request body
 
-    const response = await fetch(`${API}/cart/book`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-
-    const { result } = await response.json();
-
+  fetch(API + "/cart/book", {// i wanted to try and add the cart purchased thing to the booking so i saw that perhaps this is a possible way of doing it but im not too sure
+    method: "POST", // Used the post method in the services tiers thing on ariane
+    headers: { "Content-Type": "application/json" }, 
+    body: JSON.stringify(body), 
+  })
+  .then(function(response) {
+    return response.json(); 
+  })
+  .then(function(data) {
+    let result = data.result;
+    // Check the result
     if (!result) {
-      throw new Error("Unable to complete purchase");
+      console.log("Unable to complete purchase"); // shows if there was a problem with the booking in the cart
+      return;
     }
-
-    alert("Purchase completed successfully!");
-    updateFromCartsArray();
-  } catch (error) {
+    alert("Purchase completed successfully!"); // shows that it has been added to the booking page
+  })
+  .catch(function(error) {
     console.error("Error purchasing:", error);
-  }
+  });
 }
-
-// Initialize the visuals
-document.addEventListener("DOMContentLoaded", () => {
-  updateFromCartsArray();
-});
