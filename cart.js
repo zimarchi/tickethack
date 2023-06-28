@@ -36,7 +36,7 @@ function removeItem(id) {
   console.log("Remove item with id " + id); // Log the id of the item that has to be removed
 
   fetch(API + "/cart/delete/" + id, {
-    method: "DELETE", // Use the DELETE method
+    method: "DELETE"
   })
   .then(function(response) {
     return response.json(); // Convert the response to a JavaScript object
