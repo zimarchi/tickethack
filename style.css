@@ -25,15 +25,19 @@ body {
     background-color: white;
   }
   
-  #cartButton {
+ .header_btn {
     padding-left: 380%;
     padding-right: 25%;
     display: flex;
     justify-content: space-between;
+    font-family: 'Trebuchet MS';
+    color: #000000;
+    font-size: 28px;
   }
+
+
   
   #logo-container {
-    border: 0.5px solid black;
     grid-row-start: 1;
     grid-row-end: 2;
     grid-column-start: 1;
@@ -44,7 +48,7 @@ body {
     font-weight: bold;
     font-size: 28px;
     padding-left: 2%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS';
   }
   
   #container-left {
@@ -110,8 +114,7 @@ body {
     flex-direction: column;
   }
   
-  #trainImg img,
-  #notfoundImg img {
+  #trainImg img {
     border-bottom: 5px solid #58A895;
     width: 80%;
     margin-left: 12%;
@@ -124,50 +127,7 @@ body {
     width: 100%;
   }
   
-  #travel {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 5%;
-    margin: 10px;
-    background-color: #F3F3F4;
-    border-radius: 10px;
-    border-bottom: 1px solid #dadada;
-  }
-  
-  #travel p {
-    font-size: 18px;
-    color: black;
-    font-weight: bold;
-  }
-  
-  #travel span {
-    font-size: 16px;
-    color: #A5A5A5;
-    font-weight: normal;
-  }
-  
-  #travel .btn {
-    background-color: #58A895;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 5%;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-  }
-  
-  #travel .btn:hover {
-    background-color: #488573;
-  }
-  
-  #noTrips {
-    font-size: 24px;
-    color: #A5A5A5;
-    text-align: center;
-    padding: 10%;
-  }
+
   
   
 

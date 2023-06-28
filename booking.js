@@ -20,7 +20,7 @@ async function readAllCartFromDB() {
 
 const container = document.querySelector("#container-trips");
 
-function updateGuiFromCartsArray() {
+function updateFromCartsArray() {
   container.innerHTML = "";
 
   carts.forEach((cart) => {
@@ -64,7 +64,7 @@ function updateGuiFromCartsArray() {
 async function main() {
   try {
     await readAllCartFromDB();
-    updateGuiFromCartsArray();
+    updateFromCartsArray();
   } catch (error) {
     console.error("An error occurred:", error);
   }

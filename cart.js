@@ -39,7 +39,7 @@ function createCartElement(cart) {
   return itemBox;
 }
 
-async function updateGuiFromCartsArray() {
+async function updateFromCartsArray() {
   try {
     const carts = await readAllCartFromDB();
     console.log("UPDATE GUI FROM DB", carts);
