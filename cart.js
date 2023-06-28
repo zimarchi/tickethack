@@ -39,7 +39,7 @@ function removeItem(id) {
     method: "DELETE"
   })
   .then(function(response) {
-    return response.json(); // Convert the response to a JavaScript object
+    return response.json(); 
   })
   .then(function(data) {
     let result = data.result;
@@ -52,7 +52,6 @@ function removeItem(id) {
     document.getElementById("ID" + id).remove();
   })
   .catch(function(error) {
-    // shows if there are errors
     console.error("Error removing item:", error);
   });
 }
