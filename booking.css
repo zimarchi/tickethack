@@ -4,7 +4,9 @@ body {
   }
   
   #container {
-    background-color: rgb(160, 160, 160);
+    background-image: url('images/background.jpg');
+    background-position: center center;
+    background-size: cover;
     height: 100vh;
     width: 100vw;
     display: grid;
@@ -19,21 +21,21 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: white;
+    opacity: 0.85;
   }
   
   #cartButton,
-  #bookingButton {
+#bookingButton {
     padding-right: 1.5rem;
     text-decoration: none;
     color: black;
-    text-align: right;
-  }
+    font-size: 18px;
+    grid-row: 1;
+    grid-column: 9 / span 4;
+}
+
   
   #ticketHackButton {
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column-start: 1;
-    grid-column-end: 5;
     font-size: 28px;
     padding-right: 1.5rem;
     text-decoration: none;
@@ -45,15 +47,16 @@ body {
     font-weight: bolder;
     padding-left: 2%;
   }
-  
+
   #logo-container {
-    justify-content: space-between;
-    align-items: center;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 5;
     display: flex;
     flex-direction: row;
     color: #58A895;
     font-weight: bold;
-    font-size: 28px;
     padding-left: 2%;
     font-family: 'Trebuchet MS';
   }
@@ -68,13 +71,14 @@ body {
     border-radius: 10px;
     justify-content: space-around;
     margin: 10px;
+    opacity: 0.85;
   }
   
   .travel {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: antiquewhite;
+    background-color: antiquewhite; 
     padding: 15px;
     margin: 10px;
     border-radius: 10px;

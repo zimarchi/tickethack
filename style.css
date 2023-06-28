@@ -21,18 +21,20 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: white;
+    opacity: 0.85;
   }
   
   #cartButton,
-  #bookingButton {
+#bookingButton {
     padding-right: 1.5rem;
     text-decoration: none;
     color: black;
-    align-items: left;
-    font-size: 20px;
-  
-  }
+    font-size: 18px;
+    grid-row: 1;
+    grid-column: 9 / span 4;
+}
 
+  
   #ticketHackButton {
     font-size: 28px;
     padding-right: 1.5rem;
@@ -46,9 +48,6 @@ body {
     padding-left: 2%;
   }
 
-
-
-  
   #logo-container {
     grid-row-start: 1;
     grid-row-end: 2;
@@ -58,7 +57,6 @@ body {
     flex-direction: row;
     color: #58A895;
     font-weight: bold;
-    font-size: 28px;
     padding-left: 2%;
     font-family: 'Trebuchet MS';
   }
