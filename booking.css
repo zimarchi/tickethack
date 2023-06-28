@@ -26,9 +26,14 @@ body {
     padding-right: 1.5rem;
     text-decoration: none;
     color: black;
+    text-align: right;
   }
   
   #ticketHackButton {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 5;
     font-size: 28px;
     padding-right: 1.5rem;
     text-decoration: none;
@@ -42,14 +47,15 @@ body {
   }
   
   #logo-container {
-    grid-row: 1;
-    grid-column: 1 / span 4;
+    justify-content: space-between;
+    align-items: center;
     display: flex;
     flex-direction: row;
     color: #58A895;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: 28px;
     padding-left: 2%;
+    font-family: 'Trebuchet MS';
   }
   
   #container-left {

@@ -4,6 +4,7 @@ body {
   }
   
   #container {
+    background-color: rgb(160, 160, 160);
     height: 100vh;
     width: 100vw;
     display: grid;
@@ -11,17 +12,47 @@ body {
     grid-template-columns: repeat(12, 1fr);
   }
   
-  header {
+  #header {
     grid-row: 1;
-    grid-column: 1 / -1;
+    grid-column: 1 / span 12;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: white;
   }
   
-  nav .header_btn {
-    margin: 50px;
+  #cartButton,
+  #bookingButton {
+    padding-right: 1.5rem;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+  }
+  
+  #ticketHackButton {
+    font-size: 28px;
+    padding-right: 1.5rem;
+    text-decoration: none;
+    color: #58A895;
+    grid-row: 1;
+    grid-column: 1 / span 4;
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+    padding-left: 2%;
+  }
+
+  #logo-container {
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    display: flex;
+    flex-direction: row;
+    color: #58A895;
+    font-weight: bold;
+    padding-left: 2%;
+    font-family: 'Trebuchet MS';
   }
   
   main {
@@ -31,20 +62,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  #ticketHackButton {
-    font-size: 28px;
-    padding-right: 1.5rem;
-    text-decoration: none;
-    color: #58A895;
-    border: 0.5px solid black;
-    grid-row: 1;
-    grid-column: 1 / span 4;
-    display: flex;
-    flex-direction: row;
-    font-weight: bolder;
-    padding-left: 2%;
   }
   
   #center_box {
